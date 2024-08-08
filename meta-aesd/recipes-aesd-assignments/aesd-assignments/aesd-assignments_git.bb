@@ -4,11 +4,11 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 # TODO: Set this  with the path to your assignments rep.  Use ssh protocol and see lecture notes
 # about how to setup ssh-agent for passwordless acc
-SRC_URI = "git://git@github.com:cu-ecen-aeld/assignments-3-and-later-grasdf1234.git;protocol=ssh;branch=master"
+SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-grasdf1234.git;protocol=ssh;branch=master"
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment repo
-SRCREV = "de352744125479eb8b021d15f0129c73779c90d5"
+SRCREV = "d1b3ca784f11a979df672e44e6048d848f9d0602"
 
 # This sets your staging directory based on WORKDIR, where WORKDIR is defined at 
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
@@ -25,7 +25,7 @@ TARGET_LDFLAGS += "-pthread -lrt"
 
 inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
-INITSCRIPT_NAME = "aesdsocket-start-stop"
+INITSCRIPT_NAME = "aesdsocket-start-stop.sh"
 RDEPENDS:${PN} += "libgcc"
 
 do_configure () {
@@ -47,5 +47,5 @@ do_install () {
 	install -d ${D}${bindir}
 	install -m 0755 ${S}/aesdsocket ${D}${bindir}/	
 	install -d ${D}${sysconfdir}/init.d
-	install -m 0755 ${S}/aesdsocket-start-stop ${D}/etc/init.d/
+	install -m 0755 ${S}/aesdsocket-start-stop.sh ${D}/etc/init.d/
 }
